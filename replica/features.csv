@@ -1,0 +1,56 @@
+feature,area,priority,original,clone,notes
+Unique numeric device ID assigned on first run,identity,must,yes,no,S01; 9-10 digits random
+Show my ID with copy action,identity,must,yes,no,S01
+Run portable without installing,install,must,yes,no,S22
+Install as service with start at boot,install,must,yes,no,S22; needed for unattended and reboot
+Connect by typing a remote ID,connect,must,yes,no,S01 S04 F01
+Rendezvous server resolves ID to online device,network,must,yes,no,not a screen; F01
+Relay fallback when direct connection fails,network,must,yes,no,NAT traversal
+End-to-end encrypted session with fingerprint check,security,must,yes,no,S06 connection info
+Accept window with requester info and Accept/Reject,accept,must,yes,no,S05
+Per-session permission toggles in accept window,accept,must,yes,no,S05
+Disconnect from the remote side at any time,accept,must,yes,no,S05
+View remote screen with low latency,session,must,yes,no,S06; core loop
+Control remote keyboard and mouse,session,must,yes,no,S06
+Multi-monitor switch,session,must,yes,no,S06 monitor switcher
+Quality vs speed mode and scaling,session,must,yes,no,S08
+Clipboard text sync,session,must,yes,no,S06
+Session tabs (several sessions open),session,must,yes,no,S06
+Unattended access password,unattended,must,yes,no,S11 F02 F03; min 8 chars
+Brute force lockout on wrong password,security,must,yes,no,F02 edge
+Permission profiles (default/screen sharing/full/unattended/custom),unattended,must,yes,no,S12
+macOS accessibility and screen recording permission onboarding,install,must,yes,no,S22
+Recent sessions list,home,must,yes,no,S02
+In-session chat,session,should,yes,no,S09
+File manager two-pane upload/download,files,should,yes,no,S10 F04
+Copy/paste files through clipboard,files,should,yes,no,F04
+File-only session mode,files,should,yes,no,S10
+Send Ctrl+Alt+Del,actions,should,yes,no,S07; needs Windows service
+Remote restart with auto reconnect,actions,should,yes,no,S07 F06
+Lock remote device / block input,actions,should,yes,no,S07
+Request elevation (UAC),actions,should,yes,no,S05 S07; Windows
+Session recording and playback,recording,should,yes,no,S06 S21 F09
+Address book with entries and tags,address book,should,yes,no,S03 F08
+Favorites,home,should,yes,no,S02
+Hear remote audio,session,should,yes,no,S06 permission
+User accounts and sign-in in the client,accounts,should,yes,no,S16 F12
+Portal: devices list with online status,portal,should,yes,no,S17
+Portal: sessions log and remote close,portal,should,yes,no,S18 F10
+License plans with concurrent connection limit,billing,should,yes,no,S20 F12; Stripe
+Alias name@namespace,identity,could,yes,no,S01; a-z0-9-._ max 25
+Custom namespace per organization,identity,could,yes,no,paid add-on in original
+Direct session invitation with 2 min expiry,collab,could,yes,no,S14 S15 F11
+Session request queue for support teams,collab,could,yes,no,v9 feature; not read in detail
+Wake-on-LAN through another online client,unattended,could,yes,no,F07
+Switch sides,actions,could,yes,no,S07
+Whiteboard drawing on remote screen,collab,could,yes,no,S06
+Privacy mode (blank remote screen),security,could,yes,no,S06; hard per OS
+ID allowlist,security,could,yes,no,S11
+Shared address books across team and roles,portal,could,yes,no,S19 S20
+Two-factor for unattended access,security,could,yes,no,S11
+Audit / activity log,portal,could,yes,no,help Activity Logs
+TCP tunneling and VPN,network,could,yes,skip,niche for v1; security risk surface
+Remote print,actions,could,yes,skip,driver work per OS; low value for v1
+CRM/ITSM integrations (Salesforce Freshworks),integrations,could,yes,skip,partner deals and their APIs
+Interoperability with AnyDesk network and IDs,network,could,yes,skip,their network; not ours to join
+Mobile clients and on-premises server,platform,could,yes,skip,out of chosen scope

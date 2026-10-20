@@ -1,0 +1,143 @@
+/** generado por build_tokens.py desde tokens.json: no editar a mano */
+module.exports = { theme: {
+  "colors": {
+    "bg": "var(--color-bg)",
+    "surface": "var(--color-surface)",
+    "surface-raised": "var(--color-surface-raised)",
+    "surface-hover": "var(--color-surface-hover)",
+    "border": "var(--color-border)",
+    "border-input": "var(--color-border-input)",
+    "text": "var(--color-text)",
+    "text-muted": "var(--color-text-muted)",
+    "accent": "var(--color-accent)",
+    "accent-hover": "var(--color-accent-hover)",
+    "accent-subtle": "var(--color-accent-subtle)",
+    "on-accent": "var(--color-on-accent)",
+    "focus": "var(--color-focus)",
+    "danger": "var(--color-danger)",
+    "danger-subtle": "var(--color-danger-subtle)",
+    "on-danger": "var(--color-on-danger)",
+    "success": "var(--color-success)",
+    "warning": "var(--color-warning)",
+    "warning-subtle": "var(--color-warning-subtle)",
+    "online": "var(--color-online)",
+    "offline": "var(--color-offline)",
+    "chrome-bg": "var(--color-chrome-bg)",
+    "chrome-surface": "var(--color-chrome-surface)",
+    "chrome-text": "var(--color-chrome-text)",
+    "chrome-text-muted": "var(--color-chrome-text-muted)",
+    "chrome-border": "var(--color-chrome-border)",
+    "canvas": "var(--color-canvas)",
+    "overlay": "var(--color-overlay)",
+    "chrome-overlay": "var(--color-chrome-overlay)"
+  },
+  "fontFamily": {
+    "sans": "var(--font-sans)",
+    "mono": "var(--font-mono)"
+  },
+  "fontSize": {
+    "xs": [
+      "var(--text-xs)",
+      {
+        "lineHeight": "var(--leading-xs)",
+        "fontWeight": "var(--weight-xs)"
+      }
+    ],
+    "sm": [
+      "var(--text-sm)",
+      {
+        "lineHeight": "var(--leading-sm)",
+        "fontWeight": "var(--weight-sm)"
+      }
+    ],
+    "base": [
+      "var(--text-base)",
+      {
+        "lineHeight": "var(--leading-base)",
+        "fontWeight": "var(--weight-base)"
+      }
+    ],
+    "md": [
+      "var(--text-md)",
+      {
+        "lineHeight": "var(--leading-md)",
+        "fontWeight": "var(--weight-md)"
+      }
+    ],
+    "lg": [
+      "var(--text-lg)",
+      {
+        "lineHeight": "var(--leading-lg)",
+        "fontWeight": "var(--weight-lg)"
+      }
+    ],
+    "id": [
+      "var(--text-id)",
+      {
+        "lineHeight": "var(--leading-id)",
+        "fontWeight": "var(--weight-id)"
+      }
+    ],
+    "display": [
+      "var(--text-display)",
+      {
+        "lineHeight": "var(--leading-display)",
+        "fontWeight": "var(--weight-display)"
+      }
+    ]
+  },
+  "spacing": {
+    "0": "0px",
+    "2": "2px",
+    "4": "4px",
+    "8": "8px",
+    "12": "12px",
+    "16": "16px",
+    "20": "20px",
+    "24": "24px",
+    "28": "28px",
+    "32": "32px",
+    "40": "40px",
+    "48": "48px",
+    "64": "64px",
+    "px": "1px",
+    "titlebar": "var(--layout-titlebar)",
+    "tabstrip": "var(--layout-tabstrip)",
+    "addressbar": "var(--layout-addressbar)",
+    "session-toolbar": "var(--layout-session-toolbar)",
+    "tile-w": "var(--layout-tile-w)",
+    "tile-h": "var(--layout-tile-h)",
+    "side-panel": "var(--layout-side-panel)",
+    "accept-panel": "var(--layout-accept-panel)",
+    "settings-nav": "var(--layout-settings-nav)",
+    "portal-sidebar": "var(--layout-portal-sidebar)",
+    "portal-max": "var(--layout-portal-max)",
+    "window-min-w": "var(--layout-window-min-w)",
+    "window-min-h": "var(--layout-window-min-h)"
+  },
+  "borderRadius": {
+    "sm": "var(--radius-sm)",
+    "md": "var(--radius-md)",
+    "lg": "var(--radius-lg)",
+    "pill": "var(--radius-pill)",
+    "none": "0"
+  },
+  "boxShadow": {
+    "card": "var(--shadow-card)",
+    "pop": "var(--shadow-pop)",
+    "toolbar": "var(--shadow-toolbar)",
+    "none": "none"
+  },
+  "transitionDuration": {
+    "fast": "var(--motion-fast)",
+    "base": "var(--motion-base)"
+  },
+  "transitionTimingFunction": {
+    "DEFAULT": "var(--motion-ease)"
+  },
+  "screens": {
+    "sm": "640px",
+    "md": "900px",
+    "lg": "1200px"
+  }
+} };

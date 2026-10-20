@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primitivas del clon</title>
+<!-- Página de verificación del sistema de diseño. No se distribuye. Las primitivas reales (React + Radix) las construye /replica-build. -->
+<link rel="stylesheet" href="tokens.css">
+<script src="tailwind.theme.js"></script>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config = { theme: window.tokenTheme };</script>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<style>
+  .btn { display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px; border-radius:var(--radius-md); font-weight:600; transition:background var(--motion-fast) var(--motion-ease); }
+  .btn svg { width:16px; height:16px; }
+  .btn-primary { background:var(--color-accent); color:var(--color-on-accent); }
+  .btn-primary:hover, .btn-primary.is-hover { background:var(--color-accent-hover); }
+  .btn-secondary { background:var(--color-bg); color:var(--color-text); border:1px solid var(--color-border); }
+  .btn-secondary:hover, .btn-secondary.is-hover { background:var(--color-surface-hover); }
+  .btn-ghost { color:var(--color-text); }
+  .btn-ghost:hover, .btn-ghost.is-hover { background:var(--color-surface-hover); }
+  .btn-danger { background:var(--color-danger); color:var(--color-on-danger); }
+  .btn[disabled] { opacity:.5; cursor:not-allowed; }
+  .btn-icon { width:32px; padding:0; justify-content:center; }
+  .is-focus { outline:2px solid var(--color-focus); outline-offset:2px; }
+  .spin { animation: spin 1s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
+  .field { height:32px; padding:0 10px; border:1px solid var(--color-border-input); border-radius:var(--radius-md); background:var(--color-bg); }
+  .field-invalid { border-color:var(--color-danger); }
+  .tb svg { width:18px; height:18px; }
+  section > h2 { font-size:var(--text-md); line-height:var(--leading-md); font-weight:600; margin-bottom:12px; }
+</style>
+</head>
+<body class="bg-surface text-text p-24">
+<main class="mx-auto flex flex-col gap-32" style="max-width:var(--layout-portal-max)">
+
+<header>
+  <h1 class="text-lg">Primitivas: sistema de diseño del clon</h1>
+  <p class="text-sm text-text-muted">Acento = placeholder neutro (lo cambia /replica-brand). Iconos: Lucide. Fuente: Inter / JetBrains Mono.</p>
+</header>
+
+<section aria-labelledby="h-shell">
+  <h2 id="h-shell">App shell (S01): pestañas, dirección, este equipo, rejilla</h2>
+  <div class="rounded-lg shadow-pop overflow-hidden border border-border bg-surface" style="max-width:900px">
+    <div class="h-tabstrip flex items-end gap-2 px-8 bg-surface-hover">
+      <div class="h-tabstrip flex items-center gap-8 px-12 bg-bg border-b-2 border-accent text-sm"><i data-lucide="house" class="w-16 h-16"></i>Inicio</div>
+      <div class="h-tabstrip flex items-center gap-8 px-12 text-sm text-text-muted"><span class="w-8 h-8 rounded-pill bg-online"></span>Oficina-PC <i data-lucide="x" class="w-16 h-16"></i></div>
+      <div class="h-tabstrip flex items-center gap-8 px-12 text-sm text-text-muted"><i data-lucide="loader-circle" class="spin w-16 h-16"></i>Reconectando…</div>
+    </div>
+    <div class="h-addressbar flex items-center gap-8 px-8 bg-bg border-b border-border">
+      <span class="w-8 h-8 rounded-pill bg-online" title="Conectado a la red"></span>
+      <input class="field flex-1 font-mono" placeholder="ID o alias del equipo" aria-label="Dirección remota">
+      <button class="btn btn-primary" type="button"><i data-lucide="arrow-right"></i>Conectar</button>
+      <button class="btn btn-ghost btn-icon" aria-label="Solo archivos"><i data-lucide="folder"></i></button>
+      <button class="btn btn-ghost btn-icon" aria-label="Libreta"><i data-lucide="book-user"></i></button>
+      <button class="btn btn-ghost btn-icon" aria-label="Menú"><i data-lucide="menu"></i></button>
+    </div>
+    <div class="p-24 flex flex-col gap-24">
+      <div class="bg-surface-raised shadow-card rounded-lg p-16 flex items-center justify-between" style="max-width:420px">
+        <div>
+          <div class="text-xs text-text-muted">Este equipo</div>
+          <div class="text-id font-mono tabular" aria-label="1 2 3, 4 5 6, 7 8 9">123 456 789</div>
+          <div class="text-sm text-text-muted">recepcion@miempresa</div>
+        </div>
+        <div class="flex gap-4">
+          <button class="btn btn-ghost btn-icon" aria-label="Copiar ID"><i data-lucide="copy"></i></button>
+          <button class="btn btn-ghost btn-icon" aria-label="Invitar a alguien"><i data-lucide="user-plus"></i></button>
+        </div>
+      </div>
+      <div>
+        <div class="flex gap-16 text-sm mb-12" role="tablist">
+          <span role="tab" aria-selected="true" class="font-semibold border-b-2 border-accent pb-4">Recientes</span>
+          <span role="tab" class="text-text-muted">Favoritos</span>
+          <span role="tab" class="text-text-muted">Descubrir</span>
+        </div>
+        <div class="flex flex-wrap gap-16" role="grid" aria-label="Equipos recientes">
+          <div role="gridcell" tabindex="0" class="w-tile-w h-tile-h rounded-lg bg-surface-raised border border-border overflow-hidden flex flex-col">
+            <div class="flex-1 bg-canvas flex items-center justify-center text-chrome-text-muted"><i data-lucide="monitor"></i></div>
+            <div class="px-8 py-4 text-xs flex items-center gap-4"><span class="w-8 h-8 rounded-pill bg-online"></span>Oficina-PC · En línea</div>
+          </div>
+          <div role="gridcell" tabindex="0" class="w-tile-w h-tile-h rounded-lg bg-surface-raised border-2 border-accent overflow-hidden flex flex-col">
+            <div class="flex-1 bg-accent-subtle flex items-center justify-center text-accent"><i data-lucide="laptop"></i></div>
+            <div class="px-8 py-4 text-xs flex items-center gap-4"><span class="w-8 h-8 rounded-pill bg-online"></span>Portátil · Seleccionado</div>
+          </div>
+          <div role="gridcell" tabindex="0" class="w-tile-w h-tile-h rounded-lg bg-surface-raised border border-border overflow-hidden flex flex-col opacity-70">
+            <div class="flex-1 bg-surface-hover flex items-center justify-center text-text-muted"><i data-lucide="server"></i></div>
+            <div class="px-8 py-4 text-xs flex items-center gap-4 text-text-muted"><span class="w-8 h-8 rounded-pill bg-offline"></span>Servidor · Desconectado</div>
+          </div>
+          <div class="w-tile-w h-tile-h rounded-lg border border-dashed border-border flex flex-col items-center justify-center text-center text-sm text-text-muted p-12">
+            <i data-lucide="history"></i>Aquí aparecerán los equipos a los que te conectes
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-btn">
+  <h2 id="h-btn">Button: variantes y estados</h2>
+  <div class="grid gap-12" style="grid-template-columns: 110px repeat(6, max-content); align-items:center">
+    <span class="text-xs text-text-muted"></span>
+    <span class="text-xs text-text-muted">default</span><span class="text-xs text-text-muted">hover</span><span class="text-xs text-text-muted">focus</span><span class="text-xs text-text-muted">disabled</span><span class="text-xs text-text-muted">loading</span><span class="text-xs text-text-muted">icon</span>
+    <span class="text-sm">primary</span>
+    <button class="btn btn-primary">Conectar</button><button class="btn btn-primary is-hover">Conectar</button><button class="btn btn-primary is-focus">Conectar</button><button class="btn btn-primary" disabled>Conectar</button><button class="btn btn-primary" aria-busy="true"><i data-lucide="loader-circle" class="spin"></i>Conectando</button><button class="btn btn-primary btn-icon" aria-label="Conectar"><i data-lucide="arrow-right"></i></button>
+    <span class="text-sm">secondary</span>
+    <button class="btn btn-secondary">Rechazar</button><button class="btn btn-secondary is-hover">Rechazar</button><button class="btn btn-secondary is-focus">Rechazar</button><button class="btn btn-secondary" disabled>Rechazar</button><button class="btn btn-secondary" aria-busy="true"><i data-lucide="loader-circle" class="spin"></i>Guardando</button><button class="btn btn-secondary btn-icon" aria-label="Ajustes"><i data-lucide="settings"></i></button>
+    <span class="text-sm">ghost</span>
+    <button class="btn btn-ghost">Cancelar</button><button class="btn btn-ghost is-hover">Cancelar</button><button class="btn btn-ghost is-focus">Cancelar</button><button class="btn btn-ghost" disabled>Cancelar</button><button class="btn btn-ghost" aria-busy="true"><i data-lucide="loader-circle" class="spin"></i>Cargando</button><button class="btn btn-ghost btn-icon" aria-label="Copiar"><i data-lucide="copy"></i></button>
+    <span class="text-sm">danger</span>
+    <button class="btn btn-danger">Desconectar</button><button class="btn btn-danger is-hover" style="filter:brightness(.92)">Desconectar</button><button class="btn btn-danger is-focus">Desconectar</button><button class="btn btn-danger" disabled>Desconectar</button><button class="btn btn-danger" aria-busy="true"><i data-lucide="loader-circle" class="spin"></i>Cerrando</button><button class="btn btn-danger btn-icon" aria-label="Desconectar"><i data-lucide="power"></i></button>
+  </div>
+</section>
+
+<section aria-labelledby="h-in">
+  <h2 id="h-in">Campos: dirección y contraseña</h2>
+  <div class="flex flex-wrap gap-24 items-start">
+    <label class="flex flex-col gap-4 text-sm">Vacío<input class="field font-mono" placeholder="ID o alias del equipo"></label>
+    <label class="flex flex-col gap-4 text-sm">Foco<input class="field font-mono is-focus" value="123 456"></label>
+    <label class="flex flex-col gap-4 text-sm">Inválido
+      <input class="field field-invalid font-mono" value="12a 45" aria-invalid="true" aria-describedby="err1">
+      <span id="err1" class="text-xs text-danger">Un ID tiene 9 o 10 cifras, o es un alias como nombre@empresa</span></label>
+    <label class="flex flex-col gap-4 text-sm">Contraseña con error
+      <span class="flex gap-4"><input type="password" class="field field-invalid" value="xxxxxxxx" aria-describedby="err2"><button class="btn btn-ghost btn-icon" aria-label="Mostrar contraseña" aria-pressed="false"><i data-lucide="eye"></i></button></span>
+      <span id="err2" class="text-xs text-danger">Contraseña incorrecta. Quedan 3 intentos</span></label>
+    <label class="flex flex-col gap-4 text-sm">Contraseña débil
+      <input type="password" class="field" value="xxxx">
+      <span class="text-xs text-warning">Mínimo 8 caracteres; mejor 12 o más</span></label>
+    <label class="flex flex-col gap-4 text-sm text-text-muted">Deshabilitado<input class="field opacity-50" disabled placeholder="Sin conexión a la red"></label>
+  </div>
+</section>
+
+<section aria-labelledby="h-acc">
+  <h2 id="h-acc">AcceptPanel (S05) + PermissionChecklist</h2>
+  <div class="bg-surface-raised shadow-pop rounded-lg p-16 flex flex-col gap-12" style="width:360px" role="dialog" aria-labelledby="acc-t">
+    <div class="flex items-center gap-12">
+      <div class="w-48 h-48 rounded-pill bg-accent-subtle text-accent flex items-center justify-center"><i data-lucide="user"></i></div>
+      <div>
+        <div id="acc-t" class="font-semibold">Laura Gómez quiere conectarse</div>
+        <div class="text-xs text-text-muted font-mono">987 654 321 · soporte@acme</div>
+        <div class="text-xs text-success flex items-center gap-4"><i data-lucide="badge-check" class="w-16 h-16"></i>Cuenta verificada · Acme S.L.</div>
+      </div>
+    </div>
+    <div class="bg-warning-subtle text-text text-xs rounded-md p-8 flex gap-8"><i data-lucide="triangle-alert" class="w-16 h-16 text-warning shrink-0"></i>Si alguien te ha llamado sin que lo pidieras para "arreglar" tu equipo, rechaza. Ningún banco ni empresa de verdad te pide esto.</div>
+    <label class="text-sm flex flex-col gap-4">Perfil
+      <select class="field"><option>Predeterminado (Integrado)</option><option>Solo ver pantalla</option><option>Acceso total</option></select></label>
+    <fieldset class="text-sm flex flex-col gap-4">
+      <legend class="text-xs text-text-muted mb-4">Qué podrá hacer</legend>
+      <label class="flex gap-8 items-center"><input type="checkbox" checked> Usar teclado y ratón</label>
+      <label class="flex gap-8 items-center"><input type="checkbox" checked> Oír el sonido</label>
+      <label class="flex gap-8 items-center"><input type="checkbox"> Usar archivos</label>
+      <label class="flex gap-8 items-center text-text-muted"><input type="checkbox" disabled> <i data-lucide="lock" class="w-16 h-16"></i> Reiniciar el equipo · Lo fija tu organización</label>
+    </fieldset>
+    <div class="flex justify-between">
+      <button class="btn btn-ghost text-danger"><i data-lucide="flag"></i>Denunciar</button>
+      <div class="flex gap-8"><button class="btn btn-secondary is-focus">Rechazar</button><button class="btn btn-primary">Aceptar</button></div>
+    </div>
+    <div class="text-xs text-text-muted">Se rechazará sola en 0:52</div>
+  </div>
+</section>
+
+<section aria-labelledby="h-ses">
+  <h2 id="h-ses">Sesión (S06): barra oscura, lienzo y estados</h2>
+  <div class="rounded-lg overflow-hidden shadow-pop" style="max-width:900px">
+    <div class="h-session-toolbar bg-chrome-bg text-chrome-text flex items-center gap-4 px-8 tb" role="toolbar" aria-label="Barra de sesión">
+      <span class="flex items-center gap-4 text-xs text-chrome-text-muted px-8"><i data-lucide="lock"></i>Directo · AB:12:…</span>
+      <span class="w-px h-24 bg-chrome-border mx-4"></span>
+      <button class="btn btn-icon text-chrome-text bg-chrome-surface" aria-label="Monitor 1" aria-pressed="true">1</button>
+      <button class="btn btn-icon text-chrome-text-muted" aria-label="Monitor 2">2</button>
+      <span class="w-px h-24 bg-chrome-border mx-4"></span>
+      <button class="btn btn-icon text-chrome-text-muted" aria-label="Pantalla"><i data-lucide="monitor-cog"></i></button>
+      <button class="btn btn-icon text-chrome-text-muted relative" aria-label="Chat, 2 sin leer"><i data-lucide="message-square"></i><span class="absolute top-2 right-2 w-8 h-8 rounded-pill bg-danger"></span></button>
+      <button class="btn btn-icon text-chrome-text-muted" aria-label="Archivos"><i data-lucide="folder-sync"></i></button>
+      <button class="btn btn-icon text-chrome-text-muted" aria-label="Acciones"><i data-lucide="zap"></i></button>
+      <button class="btn btn-icon text-chrome-text-muted opacity-50" disabled aria-label="Teclado (sin permiso)"><i data-lucide="keyboard"></i></button>
+      <span class="flex items-center gap-4 text-xs text-chrome-text px-8"><span class="w-8 h-8 rounded-pill bg-danger"></span>Grabando</span>
+      <span class="flex-1"></span>
+      <button class="btn btn-danger"><i data-lucide="power"></i>Desconectar</button>
+    </div>
+    <div class="grid grid-cols-3 gap-2 bg-canvas p-2">
+      <div class="h-tile-h bg-canvas border border-chrome-border flex flex-col items-center justify-center text-chrome-text text-sm gap-8" aria-live="polite"><i data-lucide="loader-circle" class="spin"></i>Esperando la primera imagen</div>
+      <div class="h-tile-h bg-canvas border border-chrome-border flex flex-col" aria-live="polite">
+        <div class="bg-chrome-overlay text-chrome-text text-xs px-8 py-4 flex gap-4 items-center"><i data-lucide="eye" class="w-16 h-16"></i>Solo puedes ver este equipo</div>
+        <div class="flex-1 flex items-center justify-center text-chrome-text-muted" style="cursor:not-allowed"><i data-lucide="ban"></i></div>
+      </div>
+      <div class="h-tile-h bg-chrome-overlay flex flex-col items-center justify-center gap-8 text-chrome-text text-sm text-center px-8" aria-live="polite">La sesión terminó: el otro lado se desconectó<button class="btn btn-primary">Reconectar</button></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-misc">
+  <h2 id="h-misc">Toast, chat, transferencias, insignias, chips</h2>
+  <div class="flex flex-wrap gap-24 items-start">
+    <div class="flex flex-col gap-8" style="width:320px">
+      <div class="bg-surface-raised shadow-pop rounded-md p-12 text-sm border-l-[3px] border-success flex gap-8"><i data-lucide="circle-check" class="w-16 h-16 text-success"></i>ID copiado</div>
+      <div class="bg-surface-raised shadow-pop rounded-md p-12 text-sm border-l-[3px] border-warning flex gap-8"><i data-lucide="wifi-off" class="w-16 h-16 text-warning"></i>Sin conexión a la red. Reintentando…</div>
+      <div role="alert" class="bg-surface-raised shadow-pop rounded-md p-12 text-sm border-l-[3px] border-danger flex gap-8"><i data-lucide="circle-x" class="w-16 h-16 text-danger"></i>Has llegado al límite de conexiones de tu plan</div>
+      <div class="bg-surface-raised shadow-pop rounded-md p-12 text-sm border-l-[3px] border-accent flex flex-col gap-8">
+        <span><b>987 654 321</b> te invita a conectarte · 1:34</span>
+        <span class="flex gap-8 justify-end"><button class="btn btn-secondary">Rechazar</button><button class="btn btn-primary">Aceptar</button></span>
+      </div>
+    </div>
+    <div class="bg-bg rounded-lg border border-border flex flex-col" style="width:320px; height:260px">
+      <div class="px-12 py-8 border-b border-border text-sm font-semibold">Chat</div>
+      <div role="log" aria-live="polite" class="flex-1 p-12 flex flex-col gap-8 text-sm overflow-auto">
+        <div class="self-start bg-surface rounded-md px-8 py-4">Hola, ya estoy dentro. ¿Ves el puntero moverse?<div class="text-xs text-text-muted">10:42</div></div>
+        <div class="self-end bg-accent-subtle rounded-md px-8 py-4">Sí, lo veo<div class="text-xs text-text-muted">10:42</div></div>
+        <div class="text-xs text-text-muted">El otro lado está escribiendo…</div>
+      </div>
+      <div class="p-8 border-t border-border"><input class="field w-full" placeholder="Escribe al otro lado"></div>
+    </div>
+    <div class="flex flex-col gap-12" style="width:320px">
+      <div class="text-sm">informe.pdf <span class="text-xs text-text-muted">· 12 MB de 27 MB · 4,1 MB/s</span>
+        <progress class="w-full" value="45" max="100" aria-valuetext="45 %, 12 MB de 27 MB"></progress></div>
+      <div class="text-sm flex items-center gap-8"><i data-lucide="circle-check" class="w-16 h-16 text-success"></i>fotos.zip · Hecho</div>
+      <div class="text-sm flex items-center gap-8"><i data-lucide="circle-x" class="w-16 h-16 text-danger"></i>backup.db · Falló <button class="btn btn-ghost">Reintentar</button></div>
+      <div class="flex flex-wrap gap-8 text-xs">
+        <span class="inline-flex items-center gap-4 px-8 py-2 rounded-pill bg-surface"><span class="w-8 h-8 rounded-pill bg-online"></span>En línea</span>
+        <span class="inline-flex items-center gap-4 px-8 py-2 rounded-pill bg-surface"><span class="w-8 h-8 rounded-pill bg-offline"></span>Desconectado</span>
+        <span class="inline-flex items-center gap-4 px-8 py-2 rounded-pill bg-surface"><i data-lucide="radio-tower" class="w-16 h-16"></i>Relay</span>
+        <span class="inline-flex items-center gap-4 px-8 py-2 rounded-pill bg-accent-subtle text-accent">Plan Equipo</span>
+      </div>
+      <div class="flex flex-wrap gap-8 text-xs">
+        <span class="inline-flex items-center gap-4 px-8 py-2 rounded-pill bg-surface border border-border">oficina <button aria-label="Quitar etiqueta oficina"><i data-lucide="x" class="w-16 h-16"></i></button></span>
+        <span class="inline-flex items-center gap-4 px-8 py-2 rounded-pill bg-accent-subtle text-accent border border-accent">clientes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-portal">
+  <h2 id="h-portal">Ajustes (S11), tabla del portal (S17) y diálogo</h2>
+  <div class="flex flex-wrap gap-24 items-start">
+    <nav class="w-settings-nav bg-bg rounded-lg border border-border p-8 flex flex-col text-sm" aria-label="Ajustes">
+      <a class="px-8 py-4 rounded-sm">General</a>
+      <a class="px-8 py-4 rounded-sm bg-accent-subtle text-accent font-semibold" aria-current="page">Seguridad y acceso</a>
+      <a class="px-8 py-4 rounded-sm">Privacidad</a>
+      <a class="px-8 py-4 rounded-sm">Pantalla</a>
+      <a class="px-8 py-4 rounded-sm">Grabación</a>
+    </nav>
+    <table class="bg-bg rounded-lg border border-border text-sm" style="border-collapse:separate; border-spacing:0; min-width:520px">
+      <thead class="bg-surface text-xs text-text-muted"><tr>
+        <th scope="col" class="text-left px-12 py-8" aria-sort="ascending">Equipo</th><th scope="col" class="text-left px-12 py-8">ID</th><th scope="col" class="text-left px-12 py-8">Sistema</th><th scope="col" class="text-left px-12 py-8">Estado</th></tr></thead>
+      <tbody>
+        <tr class="hover:bg-surface-hover"><td class="px-12 py-8 border-t border-border">Oficina-PC</td><td class="px-12 py-8 border-t border-border font-mono">123 456 789</td><td class="px-12 py-8 border-t border-border">Windows 11</td><td class="px-12 py-8 border-t border-border"><span class="inline-flex items-center gap-4"><span class="w-8 h-8 rounded-pill bg-online"></span>En línea</span></td></tr>
+        <tr class="hover:bg-surface-hover"><td class="px-12 py-8 border-t border-border">Mac-Diseño</td><td class="px-12 py-8 border-t border-border font-mono">555 010 203</td><td class="px-12 py-8 border-t border-border">macOS 15</td><td class="px-12 py-8 border-t border-border"><span class="inline-flex items-center gap-4 text-text-muted"><span class="w-8 h-8 rounded-pill bg-offline"></span>Hace 3 h</span></td></tr>
+        <tr><td colspan="4" class="px-12 py-24 border-t border-border text-center text-text-muted">Vacío: "Aún no hay equipos. Instala el cliente y vincúlalo." <button class="btn btn-secondary ml-8">Descargar cliente</button></td></tr>
+      </tbody>
+    </table>
+    <div class="relative rounded-lg overflow-hidden" style="width:360px; height:200px">
+      <div class="absolute inset-0 bg-overlay"></div>
+      <div role="dialog" aria-labelledby="dlg-t" class="absolute inset-16 bg-surface-raised shadow-pop rounded-lg p-16 flex flex-col gap-12">
+        <div id="dlg-t" class="font-semibold">¿Reiniciar el equipo remoto?</div>
+        <p class="text-sm text-text-muted">La sesión se cortará y volverá a conectarse sola cuando el equipo arranque.</p>
+        <div class="flex justify-end gap-8 mt-auto"><button class="btn btn-secondary is-focus">Cancelar</button><button class="btn btn-danger">Reiniciar</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<script>lucide.createIcons();</script>
+</body>
+</html>

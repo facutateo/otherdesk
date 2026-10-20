@@ -1,0 +1,82 @@
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f3f4f6;
+  --color-surface-raised: #ffffff;
+  --color-surface-hover: #e9ebef;
+  --color-border: #dde1e6;
+  --color-border-input: #7b8490;
+  --color-text: #16191d;
+  --color-text-muted: #59626e;
+  --color-accent: #2f5bea;
+  --color-accent-hover: #2449c4;
+  --color-accent-subtle: #e8eefd;
+  --color-on-accent: #ffffff;
+  --color-focus: #2f5bea;
+  --color-danger: #c62f2f;
+  --color-danger-subtle: #fdecec;
+  --color-on-danger: #ffffff;
+  --color-success: #1d7a4b;
+  --color-warning: #9a5b00;
+  --color-warning-subtle: #fff4e0;
+  --color-online: #1d7a4b;
+  --color-offline: #7b8490;
+  --color-chrome-bg: #1c1f24;
+  --color-chrome-surface: #2a2e35;
+  --color-chrome-text: #f1f3f5;
+  --color-chrome-text-muted: #a9b0ba;
+  --color-chrome-border: #8a929d;
+  --color-canvas: #0d0f12;
+  --color-overlay: rgba(22,25,29,.45);
+  --color-chrome-overlay: rgba(28,31,36,.92);
+  --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --text-xs: 12px;
+  --leading-xs: 16px;
+  --weight-xs: 500;
+  --text-sm: 13px;
+  --leading-sm: 18px;
+  --weight-sm: 400;
+  --text-base: 14px;
+  --leading-base: 20px;
+  --weight-base: 400;
+  --text-md: 16px;
+  --leading-md: 24px;
+  --weight-md: 600;
+  --text-lg: 20px;
+  --leading-lg: 28px;
+  --weight-lg: 600;
+  --text-id: 28px;
+  --leading-id: 34px;
+  --weight-id: 600;
+  --text-display: 32px;
+  --leading-display: 40px;
+  --weight-display: 700;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(16,24,40,.06), 0 1px 3px rgba(16,24,40,.10);
+  --shadow-pop: 0 10px 28px rgba(16,24,40,.18);
+  --shadow-toolbar: 0 4px 12px rgba(0,0,0,.35);
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-ease: cubic-bezier(.2,.8,.2,1);
+  --layout-titlebar: 32px;
+  --layout-tabstrip: 32px;
+  --layout-addressbar: 40px;
+  --layout-session-toolbar: 40px;
+  --layout-tile-w: 176px;
+  --layout-tile-h: 132px;
+  --layout-side-panel: 320px;
+  --layout-accept-panel: 360px;
+  --layout-settings-nav: 220px;
+  --layout-portal-sidebar: 240px;
+  --layout-portal-max: 1200px;
+  --layout-window-min-w: 720px;
+  --layout-window-min-h: 480px;
+}
+
+html { font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-base); color: var(--color-text); background: var(--color-surface); }
+.tabular { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; } }
